@@ -1,5 +1,5 @@
 # Small Evolution Simulator
-A simple, lightweight evolution simulator where organisms with unique genes compete for food and survival. 
+A simple, lightweight evolution simulator where organisms with unique genes compete for food and survival. Currently runs completely in the terminal.
 
 ## Features
 - Organisms with randomly assigned genes
