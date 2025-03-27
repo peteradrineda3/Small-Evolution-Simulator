@@ -310,7 +310,7 @@ def run_interactive_simulation(params, initial_organisms, days):
     sim.day = 0
     
     for _ in range(days):
-        sim.process_day()
+        # sim.process_day()
         sim.print_daily_summary()
         
         while True:
@@ -335,6 +335,8 @@ def run_interactive_simulation(params, initial_organisms, days):
                 print("  [ID] - Inspect organism")
                 print("  next - Continue to next day")
                 print("  quit - End simulation early")
+
+        sim.process_day()
 
     print("\n=== Simulation completed ===")
     print(f"Finished {days} days of simulation")
