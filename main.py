@@ -75,6 +75,7 @@ Genes:
             stats += f"\nCause of Death: {self.cause_of_death}"
             if self.killer_id is not None:
                 stats += f"\nKilled by: Organism {self.killer_id}"
+            stats += f"\nDied on day {self.death_day}"
         return stats
 
 class EvolutionSimulator:
@@ -254,7 +255,7 @@ class EvolutionSimulator:
         if random.random() > loser.defense:
             loser.alive = False
             loser.cause_of_death = "Killed in fight"
-            loser.death_day = self.day
+            loser.death_day = self.day + 1 #day is incremented at end of day so have to account for it for now
             loser.killer_id = winner.id
             
             if winner.diet == 'carnivore':
