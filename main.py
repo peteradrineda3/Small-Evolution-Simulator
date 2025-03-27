@@ -22,6 +22,8 @@ class Organism:
         self.cause_of_death = None
         self.killer_id = None
         self.age = 0
+        self.parent = None
+        self.children = []
 
     @property
     def diet(self): return self.genes['diet']
@@ -59,6 +61,8 @@ Age: {self.age} days
 Position: {self.position}
 Energy: {self.energy:.2f}
 Diet: {self.diet}
+Parent: {'Organism ' + str(self.parent.id) if self.parent else 'None'}
+Children: {[org.id for org in self.children] if self.children else 'None'}
 Genes:
   Aggressiveness: {self.aggressiveness:.2f}
   Sight Range: {self.sight_range}
@@ -226,7 +230,9 @@ class EvolutionSimulator:
                 new_genes = org.mutate()
                 child = Organism(new_genes, child_energy, org.position, 
                                 org.species, self.day)
+                child.parent = org
                 new_organisms.append(child)
+                org.children.append(child)
 
         #updating organism lists
         self.dead_organisms.extend([org for org in self.organisms if not org.alive])
@@ -347,7 +353,6 @@ for _ in range(20):
 run_interactive_simulation(params, initial_organisms, days=100)
 
 ### ADD NEXT
-# add parents and children to each organism
 # add 'oldest living ancestor' and 'oldest living child' to each organism
 # add a way to move forward a set amount of days (maybe by doing 'next 20' means +20 days)
 # different sized food
@@ -363,5 +368,6 @@ run_interactive_simulation(params, initial_organisms, days=100)
 # add action history for each organism
 # split into multiple files for each class
 # add proper function commenting
+# allow user to add an organism whenever they want
 ## maybe implement a statistical analysis model that shows which of the genes were the most impactful in current simulation
 ## visualisation of everything
