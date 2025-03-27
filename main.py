@@ -294,6 +294,15 @@ class EvolutionSimulator:
         return [org.id for org in heapq.nlargest(num, self.organisms, key=lambda org: org.age)]
         #maybe add print function in here to avoid having to return values
 
+    def print_diet_summary(self):
+        herbivore_ids = [org.id for org in self.organisms if org.diet == 'herbivore']
+        omnivore_ids = [org.id for org in self.organisms if org.diet == 'omnivore']
+        carnivore_ids = [org.id for org in self.organisms if org.diet == 'carnivore']
+
+        print(f"Herbivores ({len(herbivore_ids)}): {', '.join(map(str, herbivore_ids))}")
+        print(f"Omnivores ({len(omnivore_ids)}): {', '.join(map(str, omnivore_ids))}")
+        print(f"Carnivores ({len(carnivore_ids)}): {', '.join(map(str, carnivore_ids))}")
+
 
 def run_interactive_simulation(params, initial_organisms, days):
     sim = EvolutionSimulator(params)
@@ -317,6 +326,8 @@ def run_interactive_simulation(params, initial_organisms, days):
             elif user_input == 'dead':
                 dead_ids = [org.id for org in sim.dead_organisms]
                 print(f"Dead organisms ({len(dead_ids)}): {', '.join(map(str, dead_ids))}")
+            elif user_input == 'diets':
+                sim.print_diet_summary()
             elif user_input.isdigit():
                 sim.inspect_organism(int(user_input))
             else:
