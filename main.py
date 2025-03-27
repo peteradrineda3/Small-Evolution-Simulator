@@ -24,6 +24,7 @@ class Organism:
         self.age = 0
         self.parent = None
         self.children = []
+        self.victims = []
 
     @property
     def diet(self): return self.genes['diet']
@@ -63,6 +64,7 @@ Energy: {self.energy:.2f}
 Diet: {self.diet}
 Parent: {'Organism ' + str(self.parent.id) if self.parent else 'None'}
 Children: {[org.id for org in self.children] if self.children else 'None'}
+Victims: {self.victims if self.victims else 'None'}
 Genes:
   Aggressiveness: {self.aggressiveness:.2f}
   Sight Range: {self.sight_range}
@@ -257,6 +259,7 @@ class EvolutionSimulator:
             loser.cause_of_death = "Killed in fight"
             loser.death_day = self.day + 1 #day is incremented at end of day so have to account for it for now
             loser.killer_id = winner.id
+            winner.victims.append(loser.id)
             
             if winner.diet == 'carnivore':
                 winner.energy += loser.energy * self.params['carnivore_energy_gain']
