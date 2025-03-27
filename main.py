@@ -31,7 +31,7 @@ class Organism:
     @property
     def aggressiveness(self): return self.genes['aggressiveness']
     @property
-    def sight_range(self): return self.genes['sight_range']
+    def sight_range(self): return self.genes['sight_range'] if not self.diet == 'carnivore' else self.genes['sight_range'] + 2
     @property
     def strength(self): return self.genes['strength']
     @property
@@ -247,8 +247,8 @@ class EvolutionSimulator:
         # a_score = a.strength * 1 + a.energy * 0.25
         # b_score = b.strength * 1 + b.energy * 0.25
         
-        a_score = a.strength * a.energy
-        b_score = b.strength * b.energy
+        a_score = a.strength * a.energy if not a.diet == 'carnivore' else a.strength * a.energy * 1.5
+        b_score = b.strength * b.energy if not b.diet == 'carnivore' else b.strength * b.energy * 1.5
 
         winner, loser = (a, b) if a_score > b_score else (b, a)
         if a_score == b_score:
@@ -349,8 +349,8 @@ params = {
     'energy_loss_per_day': 50,
     'reproduction_energy_threshold': 60,
     'omnivore_energy_proportion': 0.6,
-    'carnivore_energy_gain': 0.7,
-    'omnivore_energy_gain': 0.4,
+    'carnivore_energy_gain': 1,
+    'omnivore_energy_gain': 0.7,
 }
 
 #initialising with some organisms
