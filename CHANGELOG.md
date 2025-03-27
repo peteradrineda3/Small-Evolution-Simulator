@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.1.1] - 2025-03-27
+## [0.2.0] - 2025-03-27
 - Updated stats page:
   - Shows parent and children of organism
   - Shows day of death if organism is dead
