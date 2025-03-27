@@ -9,7 +9,6 @@ A simple, lightweight evolution simulator where organisms with unique genes comp
 - Dietary classifications (herbivore, carnivore, omnivore)
 
 ## Future improvements
-- Add parents and children stat/viewer for each organism
 - Add 'oldest living ancestor' and 'oldest living child' stats to each organism
 - Add a way to move forward a set amount of days
 - Different sized food
@@ -27,5 +26,6 @@ A simple, lightweight evolution simulator where organisms with unique genes comp
 - Add proper function commenting
 - More complex organism behaviour
 - Surviving organisms after a certain amount of days are used as the basis of a following generation
+- Allow user to add an organism
 - Statistical analysis model that shows which of the genes were the most impactful in current simulation
 - Visualisation
